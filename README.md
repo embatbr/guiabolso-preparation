@@ -12,6 +12,16 @@ Collection of reviews and a mock system to study prior the beginning at GuiaBols
 It is advisable to use Python and Python-like tools and frameworks.
 
 
+## Steps
+
+1. Create a simulation of part of GuiaBolso's system. It must have a database in which an user can register and a transaction (credit of debit) containing a description (e.g., a restaurant/supermarket/shopping name), value and a date.
+2. Extract information from the transactions from the users. The information must be of two types: (1) relevant information for the user (financial planning, sink holes of money and etc.) and (2) segmentation of users in profiles (economic, loose, investor and etc.)
+3. Increase the database with new users and transactions, as such as new types of data (expand the models). This will simulate the platform's growth. There's a possibility of use multiple SQL databases in a distributed system. That's when the next item is needed.
+4. Migration to a NoSQL database. The logical suggestion is Cassandra, but Mongo, Couch and other "paradigms" should be also considered (provides a better study).
+
+This steps are iteractive and incremental.
+
+
 ## Good Practices
 
 Try to use TDD for everything.
@@ -19,7 +29,6 @@ Try to use TDD for everything.
 
 ## Sources of knowledge
 
-- http://www.postgresqltutorial.com/
 - http://nbviewer.ipython.org/url/norvig.com/ipython/Probability.ipynb
 - https://www.quora.com/How-can-I-become-a-data-scientist
 - https://www.quora.com/How-do-I-get-started-with-data-engineering
