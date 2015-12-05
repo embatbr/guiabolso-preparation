@@ -5,7 +5,7 @@
 # receive the constraint "unique".
 
 
-CREATE TABLE users (
+CREATE TABLE app_users (
     id UUID PRIMARY KEY,
     email TEXT UNIQUE NOT NULL,
     crypted_password TEXT NOT NULL,
@@ -17,33 +17,33 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE bank_accounts (
+CREATE TABLE app_bank_accounts (
     id UUID PRIMARY KEY,
     bank_code TEXT NOT NULL,
     agency_code TEXT NOT NULL,
     account_code TEXT NOT NULL
 );
 
-ALTER TABLE bank_accounts ADD UNIQUE (bank_code, agency_code, account_code);
+ALTER TABLE app_bank_accounts ADD UNIQUE (bank_code, agency_code, account_code);
 
 
-CREATE TABLE categorys (
+CREATE TABLE app_categorys (
     id UUID PRIMARY KEY,
     group TEXT NOT NULL,
     name TEXT NOT NULL,
     is_personalized BOOLEAN NOT NULL
 );
 
-ALTER TABLE categorys ADD UNIQUE (group, name);
+ALTER TABLE app_categorys ADD UNIQUE (group, name);
 
 
-CREATE TABLE tags (
+CREATE TABLE app_tags (
     id UUID PRIMARY KEY,
     name TEXT UNIQUE NOT NULL
 );
 
 
-CREATE TABLE transactions (
+CREATE TABLE app_transactions (
     id UUID PRIMARY KEY,
     value DECIMAL(12, 2) NOT NULL,
     lauch_datetime TIMESTAMP NOT NULL,
@@ -53,20 +53,20 @@ CREATE TABLE transactions (
     description TEXT
 );
 
-CREATE INDEX idx_transactions__user_id ON transactions (user_id);
-CREATE INDEX idx_transactions__bank_account_id ON transactions (bank_account_id);
-CREATE INDEX idx_transactions__category_id ON transactions (category_id);
-ALTER TABLE transactions ADD CONSTRAINT fk_transactions__user_id FOREIGN KEY (user_id) REFERENCES users (id);
-ALTER TABLE transactions ADD CONSTRAINT fk_transactions__bank_account_id FOREIGN KEY (bank_account_id) REFERENCES bank_accounts (id);
-ALTER TABLE transactions ADD CONSTRAINT fk_transactions__category_id FOREIGN KEY (category_id) REFERENCES categorys (id);
+CREATE INDEX idx_transactions__user_id ON app_transactions (user_id);
+CREATE INDEX idx_transactions__bank_account_id ON app_transactions (bank_account_id);
+CREATE INDEX idx_transactions__category_id ON app_transactions (category_id);
+ALTER TABLE app_transactions ADD CONSTRAINT fk_transactions__user_id FOREIGN KEY (user_id) REFERENCES app_users (id);
+ALTER TABLE app_transactions ADD CONSTRAINT fk_transactions__bank_account_id FOREIGN KEY (bank_account_id) REFERENCES app_bank_accounts (id);
+ALTER TABLE app_transactions ADD CONSTRAINT fk_transactions__category_id FOREIGN KEY (category_id) REFERENCES app_categorys (id);
 
 
-CREATE TABLE tag_transaction (
+CREATE TABLE app_tag_transaction (
     tag_id UUID NOT NULL,
     transaction_id UUID NOT NULL,
     PRIMARY KEY (tag_id, transaction_id)
 );
 
-CREATE INDEX idx_tag_transaction ON tag_transaction (transaction);
-ALTER TABLE tag_transaction ADD CONSTRAINT fk_tag_transaction__tag_id FOREIGN KEY (tag_id) REFERENCES tags (id);
-ALTER TABLE tag_transaction ADD CONSTRAINT fk_tag_transaction__transaction_id FOREIGN KEY (transaction_id) REFERENCES transactions (id)
+CREATE INDEX idx_tag_transaction ON app_tag_transaction (transaction);
+ALTER TABLE app_tag_transaction ADD CONSTRAINT fk_tag_transaction__tag_id FOREIGN KEY (tag_id) REFERENCES app_tags (id);
+ALTER TABLE app_tag_transaction ADD CONSTRAINT fk_tag_transaction__transaction_id FOREIGN KEY (transaction_id) REFERENCES app_transactions (id)

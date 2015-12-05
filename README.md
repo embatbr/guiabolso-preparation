@@ -24,7 +24,7 @@ This steps are iteractive and incremental.
 
 ## Good Practices
 
-Try to use TDD for everything.
+Try to use TDD for everything. Use the [Captain's Log](docs/captainslog.md)
 
 
 ## Sources of knowledge
