@@ -29,6 +29,7 @@ Try to use TDD for everything.
 
 ## Sources of knowledge
 
+- https://www.youtube.com/playlist?list=PL77JVjKTJT2jyVllJeO3TZV9D5cfSvSjR
 - http://nbviewer.ipython.org/url/norvig.com/ipython/Probability.ipynb
 - https://www.quora.com/How-can-I-become-a-data-scientist
 - https://www.quora.com/How-do-I-get-started-with-data-engineering
