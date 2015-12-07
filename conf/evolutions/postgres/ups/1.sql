@@ -1,3 +1,15 @@
+# SYSTEM
+
+
+CREATE TABLE conf_evolutions (
+    id SERIAL PRIMARY KEY,
+    evolution INTEGER NOT NULL,
+    execution_datetime TIMESTAMP NOT NULL # to be (unique) or not be? Maybe not (to allow distribution)
+);
+
+
+# APPLICATION
+
 # All tables have an UUID as primary key, even when "unnecessary". The UUID was
 # chosen to allow a more unique PK (and it's easier to distribute the database).
 
@@ -14,8 +26,8 @@ CREATE TABLE app_users (
     crypted_password TEXT NOT NULL,
     name TEXT NOT NULL,
     age INTEGER,
-    state TEXT,
-    city TEXT,
+    state TEXT NOT NULL,
+    city TEXT NOT NULL,
     signup_datetime TIMESTAMP NOT NULL
 );
 
@@ -49,11 +61,11 @@ CREATE TABLE app_tags (
 CREATE TABLE app_transactions (
     id UUID PRIMARY KEY,
     value DECIMAL(12, 2) NOT NULL,
+    description TEXT NOT NULL
     lauch_datetime TIMESTAMP NOT NULL,
     user_id UUID NOT NULL,
-    bank_account_id UUID NOT NULL,
-    category_id UUID,
-    description TEXT
+    bank_account_id UUID, # can be a transaction paid with cash
+    category_id UUID, # a NULL value means an uncategorized transaction
 );
 
 CREATE INDEX idx_app_transactions__user_id ON app_transactions (user_id);

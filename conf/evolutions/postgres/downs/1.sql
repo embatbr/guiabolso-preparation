@@ -20,3 +20,6 @@ DROP TABLE app_bank_accounts;
 
 
 DROP TABLE app_users;
+
+
+DROP TABLE conf_evolutions;
