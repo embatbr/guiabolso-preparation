@@ -36,10 +36,13 @@ CREATE TABLE app_bank_accounts (
     id UUID PRIMARY KEY,
     bank_code TEXT NOT NULL,
     agency_code TEXT NOT NULL,
-    account_code TEXT NOT NULL
+    account_code TEXT NOT NULL,
+    user_id UUID NOT NULL
 );
 
-ALTER TABLE app_bank_accounts ADD UNIQUE (bank_code, agency_code, account_code);
+CREATE INDEX idx_app_bank_accounts__user_id ON app_bank_accounts (user_id);
+
+ALTER TABLE app_bank_accounts ADD UNIQUE (bank_code, agency_code, account_code); # each account only has one owner
 
 
 CREATE TABLE app_categories (
@@ -63,18 +66,15 @@ CREATE TABLE app_transactions (
     value DECIMAL(12, 2) NOT NULL,
     description TEXT NOT NULL
     lauch_datetime TIMESTAMP NOT NULL,
-    user_id UUID NOT NULL,
-    bank_account_id UUID, # can be a transaction paid with cash
     category_id UUID, # a NULL value means an uncategorized transaction
+    bank_account_id UUID NOT NULL
 );
 
-CREATE INDEX idx_app_transactions__user_id ON app_transactions (user_id);
-CREATE INDEX idx_app_transactions__bank_account_id ON app_transactions (bank_account_id);
 CREATE INDEX idx_app_transactions__category_id ON app_transactions (category_id);
+CREATE INDEX idx_app_transactions__bank_account_id ON app_transactions (bank_account_id);
 
-ALTER TABLE app_transactions ADD CONSTRAINT fk_app_transactions__user_id FOREIGN KEY (user_id) REFERENCES app_users (id);
-ALTER TABLE app_transactions ADD CONSTRAINT fk_app_transactions__bank_account_id FOREIGN KEY (bank_account_id) REFERENCES app_bank_accounts (id);
 ALTER TABLE app_transactions ADD CONSTRAINT fk_app_transactions__category_id FOREIGN KEY (category_id) REFERENCES app_categories (id);
+ALTER TABLE app_transactions ADD CONSTRAINT fk_app_transactions__bank_account_id FOREIGN KEY (bank_account_id) REFERENCES app_bank_accounts (id);
 
 
 CREATE TABLE app_tagged_transaction (

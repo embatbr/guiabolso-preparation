@@ -29,6 +29,7 @@ Try to use TDD for everything. Use the [Captain's Log](docs/captainslog.md)
 
 ## Sources of knowledge
 
+- check the big data tools provided by Amazon
 - https://www.youtube.com/playlist?list=PL77JVjKTJT2jyVllJeO3TZV9D5cfSvSjR
 - http://nbviewer.ipython.org/url/norvig.com/ipython/Probability.ipynb
 - https://www.quora.com/How-can-I-become-a-data-scientist
