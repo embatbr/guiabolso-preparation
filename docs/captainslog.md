@@ -8,7 +8,7 @@ This is a ongoing report of the repository's progress. Most of the project defin
 
 ## Entries
 
-### 2015-12-05
+### Stardate 2015-12-05
 
 The first relevant part of the system's design is starting. The main points for a first release are:
 
@@ -19,9 +19,16 @@ The first relevant part of the system's design is starting. The main points for 
 5. Extract simple stats from the base (categorize users by age, region, types of spending).
 
 
-### 2015-12-07
+### Stardate 2015-12-07
 
 1. Changed tables *app_bank_accounts* and *app_transactions* in hierarchy. Now a BankAccount references a User, and a Transaction references this BankAccount.
 2. After the visit to GuiaBolso's HQ, create a base of knowledge (mocked, using some webcrawler or other means) and categorize the transacions (semi) automatically.
 3. Should (or *must*) use the Big Data tools provided by Amazon.
 4. Should read about DynamoDB.
+
+
+### Stardate 2015-12-09
+
+1. Removed columns *email* and *crypted_password* (even the name was wrong...). Those are unnecessary.
+2. Changed name of relation-table.
+3. Removed columns "is_personalized" from table "app_categories".
