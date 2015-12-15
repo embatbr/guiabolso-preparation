@@ -32,3 +32,12 @@ The first relevant part of the system's design is starting. The main points for 
 1. Removed columns *email* and *crypted_password* (even the name was wrong...). Those are unnecessary.
 2. Changed name of relation-table.
 3. Removed columns "is_personalized" from table "app_categories".
+
+
+### Stardate 2015-12-15
+
+In order to advance in the study, the following steps must be executed before the next log's entry:
+
+1. Create a python virtual environment using the guidance provided by [Marina Mele's site](http://www.marinamele.com/taskbuster-django-tutorial).
+2. Install [peewee](https://peewee.readthedocs.org/en/latest/) in the venv.
+3. Use peewee to populate the relational database (postgres), creating models and other needed structures.
